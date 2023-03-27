@@ -9,7 +9,7 @@ public class Game
         _lastPlay = Player.None;
     }
 
-    public void Play(Player player, Position position)
+    public void Play(Player player, Tile tile)
     {
         if (_lastPlay == player)
         {
@@ -21,17 +21,17 @@ public class Game
             throw new InvalidOperationException("Invalid starting game");
         }
 
-        if (position.Row == 1 && position.Column == 1 && player == Player.O)
+        if (tile == Tile.Middle && player == Player.O)
         {
             throw new InvalidOperationException("The tile is busy");
         }
 
-        if (position.Row == 2 && position.Column == 2 && player == Player.O)
+        if (tile == Tile.Southeast && player == Player.O)
         {
             throw new InvalidOperationException("The tile is busy");
         }
 
-        if (position.Row == 0 && position.Column == 0 && player == Player.O)
+        if (tile == Tile.Northwest && player == Player.O)
         {
             throw new InvalidOperationException("The tile is busy");
         }

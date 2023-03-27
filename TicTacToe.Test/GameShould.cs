@@ -15,15 +15,15 @@ public class GameShould
     [Test]
     public void ReportAnErrorWhenStartingWithTheSecondPlayer()
     {
-        Action action = () => _game.Play(Player.O, new Position(0, 0));
+        Action action = () => _game.Play(Player.O, Tile.Middle);
         action.Should().Throw<InvalidOperationException>().WithMessage("Invalid starting game");
     }
 
     [Test]
     public void ReportAnErrorWhenAPlayerPlaysTwice()
     {
-        _game.Play(Player.X, new Position(0, 0));
-        Action action = () => _game.Play(Player.X, new Position(1, 1));
+        _game.Play(Player.X, Tile.South);
+        Action action = () => _game.Play(Player.X, Tile.Middle);
         action.Should().Throw<InvalidOperationException>().WithMessage("Invalid playing order");
     }
     
@@ -31,24 +31,24 @@ public class GameShould
     [Test]
     public void ReportAnErrorWhenAPlayerPlaysInABusyTile()
     {
-        _game.Play(Player.X, new Position(1, 1));
-        Action action = () => _game.Play(Player.O, new Position(1, 1));
+        _game.Play(Player.X, Tile.Middle);
+        Action action = () => _game.Play(Player.O, Tile.Middle);
         action.Should().Throw<InvalidOperationException>().WithMessage("The tile is busy");
     }
     
     [Test]
     public void ReportAnErrorWhenAPlayerPlaysInOtherBusyTile()
     {
-        _game.Play(Player.X, new Position(2, 2));
-        Action action = () => _game.Play(Player.O, new Position(2, 2));
+        _game.Play(Player.X, Tile.Southeast);
+        Action action = () => _game.Play(Player.O, Tile.Southeast);
         action.Should().Throw<InvalidOperationException>().WithMessage("The tile is busy");
     }
     
     [Test]
     public void ReportAnErrorWhenAPlayerPlaysInOtherMoreBusyTile()
     {
-        _game.Play(Player.X, new Position(0, 0));
-        Action action = () => _game.Play(Player.O, new Position(0, 0));
+        _game.Play(Player.X, Tile.Northwest);
+        Action action = () => _game.Play(Player.O, Tile.Northwest);
         action.Should().Throw<InvalidOperationException>().WithMessage("The tile is busy");
     }
     
