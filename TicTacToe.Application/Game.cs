@@ -3,10 +3,12 @@
 public class Game
 {
     private Player _lastPlay;
+    private IDictionary<Tile, Player> _tiles;
 
     public Game()
     {
         _lastPlay = Player.None;
+        _tiles = new Dictionary<Tile, Player>();
     }
 
     public void Play(Player player, Tile tile)
@@ -21,21 +23,12 @@ public class Game
             throw new InvalidOperationException("Invalid starting game");
         }
 
-        if (tile == Tile.Middle && player == Player.O)
-        {
-            throw new InvalidOperationException("The tile is busy");
-        }
-
-        if (tile == Tile.Southeast && player == Player.O)
-        {
-            throw new InvalidOperationException("The tile is busy");
-        }
-
-        if (tile == Tile.Northwest && player == Player.O)
+        if (_tiles.ContainsKey(tile))
         {
             throw new InvalidOperationException("The tile is busy");
         }
 
         _lastPlay = player;
+        _tiles.Add(tile, player);
     }
 }
