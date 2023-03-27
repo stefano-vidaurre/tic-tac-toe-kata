@@ -1,6 +1,4 @@
-﻿namespace TicTacToe.Console;
-
-using System;
+﻿namespace TicTacToe.Application;
 
 public static class Program
 {
