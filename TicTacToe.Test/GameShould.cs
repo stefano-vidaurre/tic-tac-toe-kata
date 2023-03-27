@@ -36,6 +36,14 @@ public class GameShould
         action.Should().Throw<InvalidOperationException>().WithMessage("The tile is busy");
     }
     
+    [Test]
+    public void ReportAnErrorWhenAPlayerPlaysInOtherBusyTile()
+    {
+        _game.Play(Player.X, 2, 2);
+        Action action = () => _game.Play(Player.O, 2, 2);
+        action.Should().Throw<InvalidOperationException>().WithMessage("The tile is busy");
+    }
+    
     // TODO: Implementar los tests para comprobar si es juego terminado
     // TODO: Implementar los tests para pintar tablero
 }
