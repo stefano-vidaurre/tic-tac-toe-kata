@@ -2,8 +2,25 @@
 
 public class Game
 {
-    public void Play(string s)
+    private string _lastPlay;
+
+    public Game()
     {
-        throw new InvalidOperationException("Invalid playing order");
+        _lastPlay = string.Empty;
+    }
+
+    public void Play(string player)
+    {
+        if (_lastPlay == player)
+        {
+            throw new InvalidOperationException("Invalid playing order");
+        }
+
+        if (string.IsNullOrEmpty(_lastPlay) && player != "X")
+        {
+            throw new InvalidOperationException("Invalid starting game");
+        }
+
+        _lastPlay = player;
     }
 }
