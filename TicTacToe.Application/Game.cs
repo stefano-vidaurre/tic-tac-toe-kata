@@ -1,12 +1,5 @@
 ﻿namespace TicTacToe.Application;
 
-public enum Player
-{
-    None = 0,
-    X,
-    O
-}
-
 public class Game
 {
     private Player _lastPlay;
