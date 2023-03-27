@@ -44,6 +44,6 @@ public class Game
 
     public Player GetWinner()
     {
-        throw new NotImplementedException();
+        return Player.None;
     }
 }
