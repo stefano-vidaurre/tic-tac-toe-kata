@@ -3,7 +3,7 @@
 public class Game
 {
     private Player _lastPlay;
-    private IDictionary<Tile, Player> _tiles;
+    private readonly IDictionary<Tile, Player> _tiles;
 
     public Game()
     {
@@ -13,22 +13,32 @@ public class Game
 
     public void Play(Player player, Tile tile)
     {
+        if (_lastPlay == Player.None && player != Player.X)
+        {
+            throw new InvalidOperationException("Invalid starting game");
+        }
+        
+        UpdateLastPlay(player);
+        AddPlay(player, tile);
+    }
+
+    private void UpdateLastPlay(Player player)
+    {
         if (_lastPlay == player)
         {
             throw new InvalidOperationException("Invalid playing order");
         }
 
-        if (_lastPlay == Player.None && player != Player.X)
-        {
-            throw new InvalidOperationException("Invalid starting game");
-        }
+        _lastPlay = player;
+    }
 
+    private void AddPlay(Player player, Tile tile)
+    {
         if (_tiles.ContainsKey(tile))
         {
             throw new InvalidOperationException("The tile is busy");
         }
 
-        _lastPlay = player;
         _tiles.Add(tile, player);
     }
 }
