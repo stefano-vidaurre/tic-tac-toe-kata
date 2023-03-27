@@ -15,15 +15,15 @@ public class GameShould
     [Test]
     public void ReportAnErrorWhenStartingWithTheSecondPlayer()
     {
-        Action action = () => _game.Play(Player.O, 0, 0);
+        Action action = () => _game.Play(Player.O, new Position(0, 0));
         action.Should().Throw<InvalidOperationException>().WithMessage("Invalid starting game");
     }
 
     [Test]
     public void ReportAnErrorWhenAPlayerPlaysTwice()
     {
-        _game.Play(Player.X, 0, 0);
-        Action action = () => _game.Play(Player.X, 1, 1);
+        _game.Play(Player.X, new Position(0, 0));
+        Action action = () => _game.Play(Player.X, new Position(1, 1));
         action.Should().Throw<InvalidOperationException>().WithMessage("Invalid playing order");
     }
     
@@ -31,24 +31,24 @@ public class GameShould
     [Test]
     public void ReportAnErrorWhenAPlayerPlaysInABusyTile()
     {
-        _game.Play(Player.X, 1, 1);
-        Action action = () => _game.Play(Player.O, 1, 1);
+        _game.Play(Player.X, new Position(1, 1));
+        Action action = () => _game.Play(Player.O, new Position(1, 1));
         action.Should().Throw<InvalidOperationException>().WithMessage("The tile is busy");
     }
     
     [Test]
     public void ReportAnErrorWhenAPlayerPlaysInOtherBusyTile()
     {
-        _game.Play(Player.X, 2, 2);
-        Action action = () => _game.Play(Player.O, 2, 2);
+        _game.Play(Player.X, new Position(2, 2));
+        Action action = () => _game.Play(Player.O, new Position(2, 2));
         action.Should().Throw<InvalidOperationException>().WithMessage("The tile is busy");
     }
     
     [Test]
     public void ReportAnErrorWhenAPlayerPlaysInOtherMoreBusyTile()
     {
-        _game.Play(Player.X, 0, 0);
-        Action action = () => _game.Play(Player.O, 0, 0);
+        _game.Play(Player.X, new Position(0, 0));
+        Action action = () => _game.Play(Player.O, new Position(0, 0));
         action.Should().Throw<InvalidOperationException>().WithMessage("The tile is busy");
     }
     
