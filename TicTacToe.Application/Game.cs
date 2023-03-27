@@ -9,7 +9,7 @@ public class Game
         _lastPlay = Player.None;
     }
 
-    public void Play(Player player)
+    public void Play(Player player, int row, int column)
     {
         if (_lastPlay == player)
         {
