@@ -1,22 +1,29 @@
 ﻿namespace TicTacToe.Application;
 
+public enum Player
+{
+    None = 0,
+    X,
+    O
+}
+
 public class Game
 {
-    private string _lastPlay;
+    private Player _lastPlay;
 
     public Game()
     {
-        _lastPlay = string.Empty;
+        _lastPlay = Player.None;
     }
 
-    public void Play(string player)
+    public void Play(Player player)
     {
         if (_lastPlay == player)
         {
             throw new InvalidOperationException("Invalid playing order");
         }
 
-        if (string.IsNullOrEmpty(_lastPlay) && player != "X")
+        if (_lastPlay == Player.None && player != Player.X)
         {
             throw new InvalidOperationException("Invalid starting game");
         }

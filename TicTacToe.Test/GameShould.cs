@@ -9,7 +9,7 @@ public class GameShould
     public void ReportAnErrorWhenStartingWithTheSecondPlayer()
     {
         Game game = new Game();
-        Action action = () => game.Play("O");
+        Action action = () => game.Play(Player.O);
         action.Should().Throw<InvalidOperationException>().WithMessage("Invalid starting game");
     }
 
@@ -17,8 +17,8 @@ public class GameShould
     public void ReportAnErrorWhenAPlayerPlaysTwice()
     {
         Game game = new Game();
-        game.Play("X");
-        Action action = () => game.Play("X");
+        game.Play(Player.X);
+        Action action = () => game.Play(Player.X);
         action.Should().Throw<InvalidOperationException>().WithMessage("Invalid playing order");
     }
     
