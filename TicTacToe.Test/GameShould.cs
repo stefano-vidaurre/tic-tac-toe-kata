@@ -4,21 +4,27 @@ using TicTacToe.Application;
 namespace TicTacToe.Test;
 public class GameShould
 {
+    private Game _game;
+
+    [SetUp]
+    public void SetUp()
+    {
+        _game = new Game();
+    }
+    
     // TODO: Implementar los tests para añadir ficha
     [Test]
     public void ReportAnErrorWhenStartingWithTheSecondPlayer()
     {
-        Game game = new Game();
-        Action action = () => game.Play(Player.O);
+        Action action = () => _game.Play(Player.O);
         action.Should().Throw<InvalidOperationException>().WithMessage("Invalid starting game");
     }
 
     [Test]
     public void ReportAnErrorWhenAPlayerPlaysTwice()
     {
-        Game game = new Game();
-        game.Play(Player.X);
-        Action action = () => game.Play(Player.X);
+        _game.Play(Player.X);
+        Action action = () => _game.Play(Player.X);
         action.Should().Throw<InvalidOperationException>().WithMessage("Invalid playing order");
     }
     
