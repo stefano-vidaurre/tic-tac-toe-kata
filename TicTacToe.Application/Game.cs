@@ -4,6 +4,6 @@ public class Game
 {
     public void Play(string s)
     {
-        throw new NotImplementedException();
+        throw new InvalidOperationException("Invalid playing order");
     }
 }
