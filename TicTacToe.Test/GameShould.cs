@@ -27,7 +27,6 @@ public class GameShould
         action.Should().Throw<InvalidOperationException>().WithMessage("Invalid playing order");
     }
     
-    // TODO: Implementar los tests para seleccionar posicion
     [Test]
     public void ReportAnErrorWhenAPlayerPlaysInABusyTile()
     {
@@ -53,5 +52,11 @@ public class GameShould
     }
     
     // TODO: Implementar los tests para comprobar si es juego terminado
+    [Test]
+    public void DeclareNoWinnerWhenTheGameIsNotFinished()
+    {
+        Player result = _game.GetWinner();
+        result.Should().Be(Player.None);
+    }
     // TODO: Implementar los tests para pintar tablero
 }

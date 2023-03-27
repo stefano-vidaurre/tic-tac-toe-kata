@@ -41,4 +41,9 @@ public class Game
 
         _tiles.Add(tile, player);
     }
+
+    public Player GetWinner()
+    {
+        throw new NotImplementedException();
+    }
 }
