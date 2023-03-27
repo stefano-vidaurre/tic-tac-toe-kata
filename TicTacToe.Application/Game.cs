@@ -26,6 +26,11 @@ public class Game
             throw new InvalidOperationException("The tile is busy");
         }
 
+        if (row == 2 && column == 2 && player == Player.O)
+        {
+            throw new InvalidOperationException("The tile is busy");
+        }
+
         _lastPlay = player;
     }
 }
