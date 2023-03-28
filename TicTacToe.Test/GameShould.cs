@@ -61,13 +61,26 @@ public class GameShould
     }
 
     [Test]
-    public void DeclarePlayerOneWinnerByFirstRow()
+    public void DeclarePlayerOneTheWinnerByFirstRow()
     {
         _game.Play(Player.X, Tile.Northwest);
         _game.Play(Player.O, Tile.Southwest);
         _game.Play(Player.X, Tile.North);
         _game.Play(Player.O, Tile.South);
         _game.Play(Player.X, Tile.Northeast);
+        
+        Player result = _game.GetWinner();
+        result.Should().Be(Player.X);
+    }
+    
+    [Test]
+    public void DeclarePlayerOneTheWinnerBySecondRow()
+    {
+        _game.Play(Player.X, Tile.West);
+        _game.Play(Player.O, Tile.Southwest);
+        _game.Play(Player.X, Tile.Middle);
+        _game.Play(Player.O, Tile.South);
+        _game.Play(Player.X, Tile.East);
         
         Player result = _game.GetWinner();
         result.Should().Be(Player.X);
