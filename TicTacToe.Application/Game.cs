@@ -64,27 +64,42 @@ public class Game
 
     public Player GetWinner()
     {
-        if (_tiles.GetTileValue(Tile.Northwest) == Player.X
-            && _tiles.GetTileValue(Tile.North) == Player.X
-            && _tiles.GetTileValue(Tile.Northeast) == Player.X)
+        if (HasWonByFirstRow())
         {
             return Player.X;
         }
         
-        if (_tiles.GetTileValue(Tile.West) == Player.X
-            && _tiles.GetTileValue(Tile.Middle) == Player.X
-            && _tiles.GetTileValue(Tile.East) == Player.X)
+        if (HasWonBySecondRow())
         {
             return Player.X;
         }
         
-        if (_tiles.GetTileValue(Tile.Southwest) == Player.X
-            && _tiles.GetTileValue(Tile.South) == Player.X
-            && _tiles.GetTileValue(Tile.Southeast) == Player.X)
+        if (HasWonByThirdRow())
         {
             return Player.X;
         }
         
         return Player.None;
+    }
+
+    private bool HasWonByThirdRow()
+    {
+        return _tiles.GetTileValue(Tile.Southwest) == Player.X
+               && _tiles.GetTileValue(Tile.South) == Player.X
+               && _tiles.GetTileValue(Tile.Southeast) == Player.X;
+    }
+
+    private bool HasWonBySecondRow()
+    {
+        return _tiles.GetTileValue(Tile.West) == Player.X
+               && _tiles.GetTileValue(Tile.Middle) == Player.X
+               && _tiles.GetTileValue(Tile.East) == Player.X;
+    }
+
+    private bool HasWonByFirstRow()
+    {
+        return _tiles.GetTileValue(Tile.Northwest) == Player.X
+               && _tiles.GetTileValue(Tile.North) == Player.X
+               && _tiles.GetTileValue(Tile.Northeast) == Player.X;
     }
 }
