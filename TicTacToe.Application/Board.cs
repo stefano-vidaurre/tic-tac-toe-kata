@@ -1,10 +1,10 @@
 ﻿namespace TicTacToe.Application;
 
-public class Tiles
+public class Board
 {
     private readonly IDictionary<Tile, Player> _dictionary;
     
-    public Tiles()
+    public Board()
     {
         _dictionary = new Dictionary<Tile, Player>();
     }

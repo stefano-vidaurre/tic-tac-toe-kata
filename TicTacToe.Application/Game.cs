@@ -3,12 +3,12 @@
 public class Game
 {
     private Player _lastPlay;
-    private readonly Tiles _tiles;
+    private readonly Board _board;
 
     public Game()
     {
         _lastPlay = Player.None;
-        _tiles = new Tiles();
+        _board = new Board();
     }
 
     public void Play(Player player, Tile tile)
@@ -19,7 +19,7 @@ public class Game
         }
         
         UpdateLastPlay(player);
-        _tiles.AddPlay(player, tile);
+        _board.AddPlay(player, tile);
     }
 
     private void UpdateLastPlay(Player player)
@@ -49,22 +49,22 @@ public class Game
 
     private bool HasWonByThirdRow(Player player)
     {
-        return _tiles.GetTileValue(Tile.Southwest) == player
-               && _tiles.GetTileValue(Tile.South) == player
-               && _tiles.GetTileValue(Tile.Southeast) == player;
+        return _board.GetTileValue(Tile.Southwest) == player
+               && _board.GetTileValue(Tile.South) == player
+               && _board.GetTileValue(Tile.Southeast) == player;
     }
 
     private bool HasWonBySecondRow(Player player)
     {
-        return _tiles.GetTileValue(Tile.West) == player
-               && _tiles.GetTileValue(Tile.Middle) == player
-               && _tiles.GetTileValue(Tile.East) == player;
+        return _board.GetTileValue(Tile.West) == player
+               && _board.GetTileValue(Tile.Middle) == player
+               && _board.GetTileValue(Tile.East) == player;
     }
 
     private bool HasWonByFirstRow(Player player)
     {
-        return _tiles.GetTileValue(Tile.Northwest) == player
-               && _tiles.GetTileValue(Tile.North) == player
-               && _tiles.GetTileValue(Tile.Northeast) == player;
+        return _board.GetTileValue(Tile.Northwest) == player
+               && _board.GetTileValue(Tile.North) == player
+               && _board.GetTileValue(Tile.Northeast) == player;
     }
 }
