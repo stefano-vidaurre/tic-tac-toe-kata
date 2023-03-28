@@ -54,6 +54,16 @@ public class Game
             return Player.X;
         }
         
+        if (_tiles.ContainsKey(Tile.West)
+            && _tiles.ContainsKey(Tile.Middle)
+            && _tiles.ContainsKey(Tile.East)
+            && _tiles[Tile.West] == Player.X
+            && _tiles[Tile.West] == Player.X
+            && _tiles[Tile.West] == Player.X)
+        {
+            return Player.X;
+        }
+        
         return Player.None;
     }
 }
