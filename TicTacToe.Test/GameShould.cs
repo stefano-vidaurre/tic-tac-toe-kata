@@ -163,7 +163,7 @@ public class GameShould
         _game.Play(Player.O, Tile.Southeast);
         
         Player result = _game.GetWinner();
-        result.Should().Be(Player.X);
+        result.Should().Be(Player.O);
     }
     // TODO: Implementar los tests para pintar tablero
 }

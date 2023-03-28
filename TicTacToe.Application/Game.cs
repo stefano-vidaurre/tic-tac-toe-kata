@@ -39,7 +39,7 @@ public class Game
             return Player.X;
         }
 
-        if (HasWonByRow(Player.O))
+        if (HasWonByRow(Player.O) || HasWonByColumn(Player.O))
         {
             return Player.O;
         }
