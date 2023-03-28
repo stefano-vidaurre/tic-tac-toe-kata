@@ -38,6 +38,11 @@ public class Game
         {
             return Player.X;
         }
+
+        if (HasWonByRow(Player.O))
+        {
+            return Player.O;
+        }
         
         return Player.None;
     }
