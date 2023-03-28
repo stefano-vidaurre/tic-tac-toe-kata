@@ -44,6 +44,16 @@ public class Game
 
     public Player GetWinner()
     {
+        if (_tiles.ContainsKey(Tile.Northwest)
+            && _tiles.ContainsKey(Tile.North)
+            && _tiles.ContainsKey(Tile.Northeast)
+            && _tiles[Tile.Northwest] == Player.X
+            && _tiles[Tile.Northwest] == Player.X
+            && _tiles[Tile.Northwest] == Player.X)
+        {
+            return Player.X;
+        }
+        
         return Player.None;
     }
 }
