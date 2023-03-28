@@ -64,16 +64,23 @@ public class Game
             return Player.X;
         }
         
-        if (_tiles.ContainsKey(Tile.Southwest)
-            && _tiles.ContainsKey(Tile.South)
-            && _tiles.ContainsKey(Tile.Southeast)
-            && _tiles[Tile.South] == Player.X
-            && _tiles[Tile.South] == Player.X
-            && _tiles[Tile.South] == Player.X)
+        if (GetTileValue(Tile.Southwest) == Player.X
+            && GetTileValue(Tile.South) == Player.X
+            && GetTileValue(Tile.Southeast) == Player.X)
         {
             return Player.X;
         }
         
+        return Player.None;
+    }
+
+    private Player GetTileValue(Tile tile)
+    {
+        if (_tiles.ContainsKey(tile))
+        {
+            return _tiles[tile];
+        }
+
         return Player.None;
     }
 }
