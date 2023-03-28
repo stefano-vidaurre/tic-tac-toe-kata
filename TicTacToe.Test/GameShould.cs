@@ -85,5 +85,18 @@ public class GameShould
         Player result = _game.GetWinner();
         result.Should().Be(Player.X);
     }
+    
+    [Test]
+    public void DeclarePlayerOneTheWinnerByThirdRow()
+    {
+        _game.Play(Player.X, Tile.Southwest);
+        _game.Play(Player.O, Tile.West);
+        _game.Play(Player.X, Tile.South);
+        _game.Play(Player.O, Tile.Middle);
+        _game.Play(Player.X, Tile.Southeast);
+        
+        Player result = _game.GetWinner();
+        result.Should().Be(Player.X);
+    }
     // TODO: Implementar los tests para pintar tablero
 }
