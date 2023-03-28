@@ -49,7 +49,14 @@ public class Game
 
     private bool HasWonByColumn(Player player)
     {
-        return HasWonByFirstColumn(player);
+        return HasWonByFirstColumn(player) || HasWonBySecondColumn(player);
+    }
+
+    private bool HasWonBySecondColumn(Player player)
+    {
+        return _board.GetTileValue(Tile.North) == player
+               && _board.GetTileValue(Tile.Middle) == player
+               && _board.GetTileValue(Tile.South) == player;
     }
 
     private bool HasWonByFirstColumn(Player player)
