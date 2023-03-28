@@ -44,7 +44,7 @@ public class Game
 
     private bool HasWonByRow(Player player)
     {
-        return HasWonByFirstRow(player) && HasWonBySecondRow(player) && HasWonByThirdRow(player);
+        return HasWonByFirstRow(player) || HasWonBySecondRow(player) || HasWonByThirdRow(player);
     }
 
     private bool HasWonByThirdRow(Player player)
