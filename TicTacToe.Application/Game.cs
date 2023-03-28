@@ -47,9 +47,9 @@ public class Game
         if (_tiles.ContainsKey(Tile.Northwest)
             && _tiles.ContainsKey(Tile.North)
             && _tiles.ContainsKey(Tile.Northeast)
-            && _tiles[Tile.Northwest] == Player.X
-            && _tiles[Tile.Northwest] == Player.X
-            && _tiles[Tile.Northwest] == Player.X)
+            && _tiles[Tile.North] == Player.X
+            && _tiles[Tile.North] == Player.X
+            && _tiles[Tile.North] == Player.X)
         {
             return Player.X;
         }
@@ -60,6 +60,16 @@ public class Game
             && _tiles[Tile.West] == Player.X
             && _tiles[Tile.West] == Player.X
             && _tiles[Tile.West] == Player.X)
+        {
+            return Player.X;
+        }
+        
+        if (_tiles.ContainsKey(Tile.Southwest)
+            && _tiles.ContainsKey(Tile.South)
+            && _tiles.ContainsKey(Tile.Southeast)
+            && _tiles[Tile.South] == Player.X
+            && _tiles[Tile.South] == Player.X
+            && _tiles[Tile.South] == Player.X)
         {
             return Player.X;
         }
