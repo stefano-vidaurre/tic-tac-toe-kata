@@ -64,17 +64,7 @@ public class Game
 
     public Player GetWinner()
     {
-        if (HasWonByFirstRow())
-        {
-            return Player.X;
-        }
-        
-        if (HasWonBySecondRow())
-        {
-            return Player.X;
-        }
-        
-        if (HasWonByThirdRow())
+        if (HasWonByRow(Player.X))
         {
             return Player.X;
         }
@@ -82,24 +72,29 @@ public class Game
         return Player.None;
     }
 
-    private bool HasWonByThirdRow()
+    private bool HasWonByRow(Player player)
     {
-        return _tiles.GetTileValue(Tile.Southwest) == Player.X
-               && _tiles.GetTileValue(Tile.South) == Player.X
-               && _tiles.GetTileValue(Tile.Southeast) == Player.X;
+        return HasWonByFirstRow(player) && HasWonBySecondRow(player) && HasWonByThirdRow(player);
     }
 
-    private bool HasWonBySecondRow()
+    private bool HasWonByThirdRow(Player player)
     {
-        return _tiles.GetTileValue(Tile.West) == Player.X
-               && _tiles.GetTileValue(Tile.Middle) == Player.X
-               && _tiles.GetTileValue(Tile.East) == Player.X;
+        return _tiles.GetTileValue(Tile.Southwest) == player
+               && _tiles.GetTileValue(Tile.South) == player
+               && _tiles.GetTileValue(Tile.Southeast) == player;
     }
 
-    private bool HasWonByFirstRow()
+    private bool HasWonBySecondRow(Player player)
     {
-        return _tiles.GetTileValue(Tile.Northwest) == Player.X
-               && _tiles.GetTileValue(Tile.North) == Player.X
-               && _tiles.GetTileValue(Tile.Northeast) == Player.X;
+        return _tiles.GetTileValue(Tile.West) == player
+               && _tiles.GetTileValue(Tile.Middle) == player
+               && _tiles.GetTileValue(Tile.East) == player;
+    }
+
+    private bool HasWonByFirstRow(Player player)
+    {
+        return _tiles.GetTileValue(Tile.Northwest) == player
+               && _tiles.GetTileValue(Tile.North) == player
+               && _tiles.GetTileValue(Tile.Northeast) == player;
     }
 }
