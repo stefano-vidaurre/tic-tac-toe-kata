@@ -1,14 +1,44 @@
 ﻿namespace TicTacToe.Application;
 
+public class Tiles
+{
+    private readonly IDictionary<Tile, Player> _dictionary;
+    
+    public Tiles()
+    {
+        _dictionary = new Dictionary<Tile, Player>();
+    }
+    
+    public void AddPlay(Player player, Tile tile)
+    {
+        if (_dictionary.ContainsKey(tile))
+        {
+            throw new InvalidOperationException("The tile is busy");
+        }
+
+        _dictionary.Add(tile, player);
+    }
+
+    public Player GetTileValue(Tile tile)
+    {
+        if (_dictionary.ContainsKey(tile))
+        {
+            return _dictionary[tile];
+        }
+
+        return Player.None;
+    }
+}
+
 public class Game
 {
     private Player _lastPlay;
-    private readonly IDictionary<Tile, Player> _tiles;
+    private readonly Tiles _tiles;
 
     public Game()
     {
         _lastPlay = Player.None;
-        _tiles = new Dictionary<Tile, Player>();
+        _tiles = new Tiles();
     }
 
     public void Play(Player player, Tile tile)
@@ -19,7 +49,7 @@ public class Game
         }
         
         UpdateLastPlay(player);
-        AddPlay(player, tile);
+        _tiles.AddPlay(player, tile);
     }
 
     private void UpdateLastPlay(Player player)
@@ -32,55 +62,29 @@ public class Game
         _lastPlay = player;
     }
 
-    private void AddPlay(Player player, Tile tile)
-    {
-        if (_tiles.ContainsKey(tile))
-        {
-            throw new InvalidOperationException("The tile is busy");
-        }
-
-        _tiles.Add(tile, player);
-    }
-
     public Player GetWinner()
     {
-        if (_tiles.ContainsKey(Tile.Northwest)
-            && _tiles.ContainsKey(Tile.North)
-            && _tiles.ContainsKey(Tile.Northeast)
-            && _tiles[Tile.North] == Player.X
-            && _tiles[Tile.North] == Player.X
-            && _tiles[Tile.North] == Player.X)
+        if (_tiles.GetTileValue(Tile.Northwest) == Player.X
+            && _tiles.GetTileValue(Tile.North) == Player.X
+            && _tiles.GetTileValue(Tile.Northeast) == Player.X)
         {
             return Player.X;
         }
         
-        if (_tiles.ContainsKey(Tile.West)
-            && _tiles.ContainsKey(Tile.Middle)
-            && _tiles.ContainsKey(Tile.East)
-            && _tiles[Tile.West] == Player.X
-            && _tiles[Tile.West] == Player.X
-            && _tiles[Tile.West] == Player.X)
+        if (_tiles.GetTileValue(Tile.West) == Player.X
+            && _tiles.GetTileValue(Tile.Middle) == Player.X
+            && _tiles.GetTileValue(Tile.East) == Player.X)
         {
             return Player.X;
         }
         
-        if (GetTileValue(Tile.Southwest) == Player.X
-            && GetTileValue(Tile.South) == Player.X
-            && GetTileValue(Tile.Southeast) == Player.X)
+        if (_tiles.GetTileValue(Tile.Southwest) == Player.X
+            && _tiles.GetTileValue(Tile.South) == Player.X
+            && _tiles.GetTileValue(Tile.Southeast) == Player.X)
         {
             return Player.X;
         }
         
-        return Player.None;
-    }
-
-    private Player GetTileValue(Tile tile)
-    {
-        if (_tiles.ContainsKey(tile))
-        {
-            return _tiles[tile];
-        }
-
         return Player.None;
     }
 }
