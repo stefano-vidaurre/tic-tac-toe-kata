@@ -28,4 +28,9 @@ public class Board
 
         return Player.None;
     }
+
+    public int Count()
+    {
+        return _dictionary.Count;
+    }
 }

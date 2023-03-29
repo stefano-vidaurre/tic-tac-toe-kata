@@ -34,6 +34,11 @@ public class Game
 
     public Player GetWinner()
     {
+        if (IsDraw())
+        {
+            return Player.Draw;
+        }
+        
         if (HasWon(Player.X))
         {
             return Player.X;
@@ -45,6 +50,11 @@ public class Game
         }
         
         return Player.None;
+    }
+
+    private bool IsDraw()
+    {
+        return _board.Count() == 9;
     }
 
     private bool HasWon(Player player)
