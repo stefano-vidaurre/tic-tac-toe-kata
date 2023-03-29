@@ -34,17 +34,22 @@ public class Game
 
     public Player GetWinner()
     {
-        if (HasWonByRow(Player.X) || HasWonByColumn(Player.X)|| HasWonByDiagonal(Player.X))
+        if (HasWon(Player.X))
         {
             return Player.X;
         }
 
-        if (HasWonByRow(Player.O) || HasWonByColumn(Player.O) || HasWonByDiagonal(Player.O))
+        if (HasWon(Player.O))
         {
             return Player.O;
         }
         
         return Player.None;
+    }
+
+    private bool HasWon(Player player)
+    {
+        return HasWonByRow(player) || HasWonByColumn(player)|| HasWonByDiagonal(player);
     }
 
     private bool HasWonByDiagonal(Player player)
