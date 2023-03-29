@@ -178,5 +178,19 @@ public class GameShould
         Player result = _game.GetWinner();
         result.Should().Be(Player.X);
     }
+
+    [Test]
+    public void DeclarePlayerTwoTheWinnerByDiagonal()
+    {
+        _game.Play(Player.X, Tile.Northeast);
+        _game.Play(Player.O, Tile.Northwest);
+        _game.Play(Player.X, Tile.South);
+        _game.Play(Player.O, Tile.Middle);
+        _game.Play(Player.X, Tile.Southwest);
+        _game.Play(Player.O, Tile.Southeast);
+        
+        Player result = _game.GetWinner();
+        result.Should().Be(Player.O);
+    }
     // TODO: Implementar los tests para pintar tablero
 }
