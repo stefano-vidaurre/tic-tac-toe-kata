@@ -51,8 +51,6 @@ public class GameShould
         action.Should().Throw<InvalidOperationException>().WithMessage("The tile is busy");
     }
     
-    // TODO: Implementar los tests para comprobar si es juego terminado
-    
     [Test]
     public void DeclareNoWinnerWhenTheGameIsNotFinished()
     {
@@ -205,5 +203,20 @@ public class GameShould
         Player result = _game.GetWinner();
         result.Should().Be(Player.X);
     }
+    
+    [Test]
+    public void DeclarePlayerTwoTheWinnerByInvertedDiagonal()
+    {
+        _game.Play(Player.X, Tile.East);
+        _game.Play(Player.O, Tile.Northeast);
+        _game.Play(Player.X, Tile.South);
+        _game.Play(Player.O, Tile.Middle);
+        _game.Play(Player.X, Tile.Southeast);
+        _game.Play(Player.O, Tile.Southwest);
+        
+        Player result = _game.GetWinner();
+        result.Should().Be(Player.O);
+    }
+    
     // TODO: Implementar los tests para pintar tablero
 }
