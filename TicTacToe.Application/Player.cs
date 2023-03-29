@@ -4,5 +4,6 @@ public enum Player
 {
     None = 0,
     X,
-    O
+    O,
+    Draw
 }

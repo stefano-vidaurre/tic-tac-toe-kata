@@ -217,6 +217,22 @@ public class GameShould
         Player result = _game.GetWinner();
         result.Should().Be(Player.O);
     }
-    
-    // TODO: Implementar los tests para pintar tablero
+
+    [Test]
+    public void DeclareADrawWhenAllTilesAreOccupiedWithNoWinner()
+    {
+        _game.Play(Player.X, Tile.Middle);
+        _game.Play(Player.O, Tile.Northwest);
+        _game.Play(Player.X, Tile.North);
+        _game.Play(Player.O, Tile.South);
+        _game.Play(Player.X, Tile.East);
+        _game.Play(Player.O, Tile.West);
+        _game.Play(Player.X, Tile.Southwest);
+        _game.Play(Player.O, Tile.Northeast);
+        _game.Play(Player.X, Tile.Southeast);
+        
+        Player result = _game.GetWinner();
+        result.Should().Be(Player.Draw);
+    }
+
 }
