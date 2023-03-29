@@ -34,7 +34,7 @@ public class Game
 
     public Player GetWinner()
     {
-        if (HasWonByRow(Player.X) || HasWonByColumn(Player.X))
+        if (HasWonByRow(Player.X) || HasWonByColumn(Player.X)|| HasWonByDiagonal(Player.X))
         {
             return Player.X;
         }
@@ -45,6 +45,13 @@ public class Game
         }
         
         return Player.None;
+    }
+
+    private bool HasWonByDiagonal(Player player)
+    {
+        return _board.GetTileValue(Tile.Northwest) == player
+               && _board.GetTileValue(Tile.Middle) == player
+               && _board.GetTileValue(Tile.Southeast) == player;
     }
 
     private bool HasWonByColumn(Player player)
